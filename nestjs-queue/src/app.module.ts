@@ -17,13 +17,13 @@ import { MlWorkerModule } from './ml-worker/ml-worker.module';
     //   entities: [],
     //   synchronize: true,
     // }),
-    BullModule.forRoot({
-      redis: {
-        host: 'localhost',
-        port: 6379,
-      },
-    }),
-    MlWorkerModule,
+    // BullModule.forRoot({
+    //   redis: {
+    //     host: 'localhost',
+    //     port: 6379,
+    //   },
+    // }),
+    // MlWorkerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

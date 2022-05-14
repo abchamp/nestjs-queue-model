@@ -1,4 +1,4 @@
-model/
+data/
 # compiled output
 nestjs-queue/node_modules
 nestjs-queue//dist

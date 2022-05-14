@@ -1,0 +1,44 @@
+version: '3.1'
+
+services:
+  db:
+    container_name: fbs_mysql
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_db
+    ports:
+      - "3307:3306"
+    networks:
+      - fbs_net
+    # don't forget backup volume
+  queue-db:
+    container_name: fbs_queue_redis
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - fbs_net
+    
+  # nestjs-queue:
+  #   container_name: fbs_nestjs_queue
+  #   build:
+  #     context: ./nestjs-queue/
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   ports:
+  #     - ${SERVER_PORT}:${SERVER_PORT}
+  #     - 9229:9229
+  #   command: npm run start:dev
+  #   env_file:
+  #     - ./nestjs-queue/.env
+  #   networks:
+  #     - fbs_net
+  #   depends:
+  #     - db
+  #     - queue-db
+networks:
+  fbs_net:
