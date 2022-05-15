@@ -1,7 +1,9 @@
 data/
 # compiled output
 nestjs-queue/node_modules
-nestjs-queue//dist
+nestjs-queue/dist
+nestjs-queue/model/input_test
+nestjs-queue/model/dogs-vs-cats.h5
 
 # Logs
 logs
