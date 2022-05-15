@@ -21,24 +21,26 @@ services:
       - "6379:6379"
     networks:
       - fbs_net
+    depends_on:
+      - db
     
-  # nestjs-queue:
-  #   container_name: fbs_nestjs_queue
-  #   build:
-  #     context: ./nestjs-queue/
-  #   volumes:
-  #     - .:/usr/src/app
-  #     - /usr/src/app/node_modules
-  #   ports:
-  #     - ${SERVER_PORT}:${SERVER_PORT}
-  #     - 9229:9229
-  #   command: npm run start:dev
-  #   env_file:
-  #     - ./nestjs-queue/.env
-  #   networks:
-  #     - fbs_net
-  #   depends:
-  #     - db
-  #     - queue-db
+  nestjs-queue:
+    container_name: fbs_nestjs_queue
+    build:
+      context: ./nestjs-queue/
+    # volumes:
+    #   - .:/usr/src/app
+    #   - /usr/src/app/node_modules
+    ports:
+      # - ${SERVER_PORT}:${SERVER_PORT}
+      - 3000:3000
+    # command: npm run start:dev
+    env_file:
+      - .env_docker
+    depends_on:
+      - queue-db
+
+    networks:
+      - fbs_net
 networks:
   fbs_net:
