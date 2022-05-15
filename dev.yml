@@ -44,6 +44,8 @@ services:
   #     - DB_MYSQL_TYPE=mysql
   #     - DB_MYSQL_PORT=3306
   #     - DB_MYSQL_DBNAME=test_db
+  #     - DB_REDIS_HOST=queue-db
+  #     - DB_REDIS_PORT=6379
   #   depends_on:
   #     - queue-db
 

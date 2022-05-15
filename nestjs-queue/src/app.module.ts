@@ -50,13 +50,20 @@ import { Logs } from './typeorm';
       },
     }),
     TypeOrmModule.forFeature([Logs]),
-    BullModule.forRoot({
-      redis: {
-        host: 'queue-db',
-        port: 6379,
-      },
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        redis: {
+          host:
+            process.env.DB_REDIS_HOST ||
+            configService.get<string>('DB_REDIS_HOST'),
+          port:
+            parseInt(process.env.DB_REDIS_PORT) ||
+            configService.get<number>('DB_REDIS_PORT'),
+        },
+      }),
     }),
-
     MlWorkerModule,
   ],
   controllers: [AppController],
