@@ -24,23 +24,28 @@ services:
     depends_on:
       - db
     
-  nestjs-queue:
-    container_name: fbs_nestjs_queue
-    build:
-      context: ./nestjs-queue/
-    # volumes:
-    #   - .:/usr/src/app
-    #   - /usr/src/app/node_modules
-    ports:
-      # - ${SERVER_PORT}:${SERVER_PORT}
-      - 3000:3000
-    # command: npm run start:dev
-    env_file:
-      - .env_docker
-    depends_on:
-      - queue-db
+  # nestjs-queue:
+  #   container_name: fbs_nestjs_queue
+  #   build:
+  #     context: ./nestjs-queue/
+  #   # volumes:
+  #   #   - .:/usr/src/app
+  #   #   - /usr/src/app/node_modules
+  #   ports:
+  #     # - ${SERVER_PORT}:${SERVER_PORT}
+  #     - 3000:3000
+  #   # command: npm run start:dev
+  #   # env_file:
+  #   #   - .env.dev.docker
+  #   environment:
+  #     - DB_MYSQL_USER=root
+  #     - DB_MYSQL_PASS=root
+  #     - DB_MYSQL_HOST=db
+  #     - DB_MYSQL_TYPE=mysql
+  #     - DB_MYSQL_PORT=3306
+  #     - DB_MYSQL_DBNAME=test_db
+  #   depends_on:
+  #     - queue-db
 
-    networks:
-      - fbs_net
 networks:
   fbs_net:
