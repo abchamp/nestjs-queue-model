@@ -4,6 +4,8 @@ nestjs-queue/node_modules
 nestjs-queue/dist
 nestjs-queue/model/input_test
 nestjs-queue/model/dogs-vs-cats.h5
+nestjs-queue/model/venv
+nestjs-queue/uploads
 
 # Logs
 logs

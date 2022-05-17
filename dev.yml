@@ -28,15 +28,11 @@ services:
   #   container_name: fbs_nestjs_queue
   #   build:
   #     context: ./nestjs-queue/
-  #   # volumes:
-  #   #   - .:/usr/src/app
-  #   #   - /usr/src/app/node_modules
+  #   volumes:
+  #     - ./uploads:/uploads
+  #     # - /usr/src/app/node_modules
   #   ports:
-  #     # - ${SERVER_PORT}:${SERVER_PORT}
   #     - 3000:3000
-  #   # command: npm run start:dev
-  #   # env_file:
-  #   #   - .env.dev.docker
   #   environment:
   #     - DB_MYSQL_USER=root
   #     - DB_MYSQL_PASS=root

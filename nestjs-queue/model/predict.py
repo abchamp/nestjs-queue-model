@@ -49,9 +49,10 @@ def load_and_predict():
 
 if __name__ == '__main__':
     try:
+        print("check in")
         # get file path from arg and call
-        predictions = load_and_predict()
-        print(predictions)
+        # predictions = load_and_predict()
+        # print(predictions)
     except Exception as e: 
         print(e)    
     

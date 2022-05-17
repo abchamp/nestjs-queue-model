@@ -22,21 +22,24 @@ export class MlWorkerController {
   // @UseInterceptors(FileInterceptor('file', multerOptions))
   async transcode() {
     try {
-      console.log('in');
       await this.mlWorker.add(
         'queuetest',
         {
-          fileName: 'fllename test',
+          rawFileName: '1',
+          rawFileExt: 'jpg',
           path: 'path-test',
           ts: new Date(),
         },
         {
           delay: 3000,
-          timeout: 10000,
+          timeout: 20000,
         },
       );
+      // clear on image
+
       return 'Create Queue';
     } catch (error) {
+      console.log(error);
       return error;
     }
   }
