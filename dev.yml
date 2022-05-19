@@ -52,6 +52,7 @@ services:
       - queue-db
     networks:
       - fbs_net
+    restart: always
 
 networks:
   fbs_net:
