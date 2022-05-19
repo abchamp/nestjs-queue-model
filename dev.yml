@@ -29,7 +29,7 @@ services:
   #   build:
   #     context: ./nestjs-queue/
   #   volumes:
-  #     - ./uploads:/uploads
+  #     - ./uploads:/usr/src/app/uploads
   #     # - /usr/src/app/node_modules
   #   ports:
   #     - 3000:3000
@@ -42,6 +42,11 @@ services:
   #     - DB_MYSQL_DBNAME=test_db
   #     - DB_REDIS_HOST=queue-db
   #     - DB_REDIS_PORT=6379
+        # - RAW_DATA_UPLOADS_DIR=/usr/src/app/uploads/raw_data/
+        # - TESTING_DATA_UPLOADS_DIR=/usr/src/app/uploads/test_input/all_classes/
+        # - PYPHON_SCRIPT_PATH=python
+        # - PYPHON_MODEL_PATH=/usr/src/app/model/predict.py 
+        # - PYPHON_MODEL_H5_PATH=/usr/src/app/model/dogs-vs-cats.h5
   #   depends_on:
   #     - queue-db
 
