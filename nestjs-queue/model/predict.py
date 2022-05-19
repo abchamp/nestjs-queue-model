@@ -28,14 +28,11 @@ def load_and_predict(modelh5Path, testingDirPath):
         class_mode='binary',
         batch_size=1)
 
-    ids = []
-    for filename in test_iterator.filenames:
-        ids.append(int(filename.split('\\')[1].split('.')[0]))
 
     predict_result = model.predict(test_iterator, steps=len(test_iterator.filenames), verbose=False)
     predictions = []
     for index, prediction in enumerate(predict_result):
-        predictions.append([ids[index], prediction[0]])
+        predictions.append([index, prediction[0]])
     predictions.sort()
     return predictions
 

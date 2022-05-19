@@ -30,7 +30,7 @@ export class MLWorkerService {
       // await fse.ensureFile(`${_rawDataDir}${rawFileName}`);
 
       await fse.copy(
-        `${_rawDataDir}${rawFileName}.${rawFileExt}`,
+        `${_rawDataDir}/${rawFileName}.${rawFileExt}`,
         _mainTestingFile,
       );
 
@@ -38,6 +38,7 @@ export class MLWorkerService {
         pythonPath: _pythonScriptPath,
         scriptPyPath: _pythonModelPath,
         h5Path: _Modelh5Path,
+        rawDataDir: _rawDataDir,
         testingDir: _testingDataDir,
         testingFile: _mainTestingFile,
       });
