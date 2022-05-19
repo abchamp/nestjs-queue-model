@@ -22,17 +22,21 @@ export class MlWorkerController {
   // @UseInterceptors(FileInterceptor('file', multerOptions))
   async transcode() {
     try {
+      let test_min = 1
+      let test_max = 3
+      let randomFileName = Math.floor(Math.random() * (test_max - test_min + 1)) + test_min;
+      
       await this.mlWorker.add(
         'queuetest',
         {
-          rawFileName: '1',
+          rawFileName: randomFileName.toString(),
           rawFileExt: 'jpg',
-          path: 'path-test',
+          // path: 'path-test',
           ts: new Date(),
         },
         {
-          delay: 3000,
-          timeout: 20000,
+          // delay: 3000,
+          timeout: 30000, // 30 sec
         },
       );
       // clear on image

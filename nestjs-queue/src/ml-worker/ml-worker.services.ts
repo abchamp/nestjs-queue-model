@@ -34,7 +34,13 @@ export class MLWorkerService {
         _mainTestingFile,
       );
 
-      console.log(_testingDataDir);
+      console.log({
+        pythonPath: _pythonScriptPath,
+        scriptPyPath: _pythonModelPath,
+        h5Path: _Modelh5Path,
+        testingDir: _testingDataDir,
+        testingFile: _mainTestingFile,
+      });
 
       const childPros = child.spawn(_pythonScriptPath, [
         _pythonModelPath, // python script
@@ -45,7 +51,7 @@ export class MLWorkerService {
       // childPros.stdin.write(JSON.stringify(JSON.stringify(inputData)));
       // childPros.stdin.end();
       for await (const chunk of childPros.stdout) {
-        console.log('=> stdout chunk: ' + chunk);
+        // console.log('=> stdout chunk: ' + chunk);
         resp_data += chunk;
       }
       let error = '';
@@ -61,7 +67,7 @@ export class MLWorkerService {
       }
       //
       // clear on directory
-      await fse.remove(_mainTestingFile)
+      await fse.remove(_mainTestingFile);
       //
       console.log(resp_data);
       return resp_data;
