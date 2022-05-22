@@ -24,35 +24,49 @@ services:
     depends_on:
       - db
 
-  nestjs-queue:
-    container_name: fbs_nestjs_queue
-    build:
-      context: ./nestjs-queue/
-    volumes:
-      - ./nestjs-queue/uploads:/usr/src/app/uploads
-      # - /usr/src/app/node_modules
-    ports:
-      - 3000:3000
-    environment:
-      - DB_MYSQL_USER=root
-      - DB_MYSQL_PASS=root
-      - DB_MYSQL_HOST=db
-      - DB_MYSQL_TYPE=mysql
-      - DB_MYSQL_PORT=3306
-      - DB_MYSQL_DBNAME=test_db
-      - DB_REDIS_HOST=queue-db
-      - DB_REDIS_PORT=6379
-      - RAW_DATA_UPLOADS_DIR=/usr/src/app/uploads/raw_data
-      - TESTING_DATA_UPLOADS_DIR=/usr/src/app/uploads/test_input
-      - PYPHON_SCRIPT_PATH=python
-      - PYPHON_MODEL_PATH=/usr/src/app/model/predict.py
-      - PYPHON_MODEL_H5_PATH=/usr/src/app/model/dogs-vs-cats.h5
+  php-web:
+    container_name: fbs_php
+    image: php:7.2.2-apache
     depends_on:
       - db
-      - queue-db
-    networks:
-      - fbs_net
-    restart: always
+    ports:
+      - "8100:80"
+    volumes:
+      - ./php:/var/www/html
+    # networks:
+    #   - fbs_net
+    # stdin_open: true
+    # tty: true
+
+    # nestjs-queue:
+    #   container_name: fbs_nestjs_queue
+    #   build:
+    #     context: ./nestjs-queue/
+    #   volumes:
+    #     - ./nestjs-queue/uploads:/usr/src/app/uploads
+    #     # - /usr/src/app/node_modules
+    #   ports:
+    #     - 3000:3000
+    #   environment:
+    #     - DB_MYSQL_USER=root
+    #     - DB_MYSQL_PASS=root
+    #     - DB_MYSQL_HOST=db
+    #     - DB_MYSQL_TYPE=mysql
+    #     - DB_MYSQL_PORT=3306
+    #     - DB_MYSQL_DBNAME=test_db
+    #     - DB_REDIS_HOST=queue-db
+    #     - DB_REDIS_PORT=6379
+    #     - RAW_DATA_UPLOADS_DIR=/usr/src/app/uploads/raw_data
+    #     - TESTING_DATA_UPLOADS_DIR=/usr/src/app/uploads/test_input
+    #     - PYPHON_SCRIPT_PATH=python
+    #     - PYPHON_MODEL_PATH=/usr/src/app/model/predict.py
+    #     - PYPHON_MODEL_H5_PATH=/usr/src/app/model/dogs-vs-cats.h5
+    #   depends_on:
+    #     - db
+    #     - queue-db
+    #   networks:
+    #     - fbs_net
+    #   restart: always
 
 networks:
   fbs_net:
